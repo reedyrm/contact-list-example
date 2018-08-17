@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import Contacts from './components/Contacts';
 import './App.css';
-import ContactList from './ContactList';
-import EditContact from './EditContact';
 
 class App extends Component {
   
@@ -27,7 +26,6 @@ class App extends Component {
   }
   
   _onContactSelected = (contactId) => {
-    console.log(`contactId: ${contactId}`);
     let selectedIndex;
     let contactObject;
     for(let index = 0; index < this.state.contactList.length; index++) {
@@ -38,7 +36,6 @@ class App extends Component {
         break;
       }
     }
-    
     
     this.setState({
       selectedContactId: contactId,
@@ -69,11 +66,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Contact List</h1>
         </header>
-        <div>
-          <ContactList contactList={contactList} onContactSelected={this._onContactSelected} selectedContactId={selectedContactId}/>
-        </div>
-        <hr />
-        <EditContact contact={this.state.contactList[selectedIndex]} onUpdate={this._onContactUpdated} />
+        <Contacts contactList={contactList}
+                  selectedContactId={selectedContactId}
+                  selectedContact={this.state.contactList[selectedIndex]}
+                  onUpdate={this._onContactUpdated}
+                  onContactSelected={this._onContactSelected} />
       </div>
     );
   }
