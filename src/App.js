@@ -25,7 +25,7 @@ class App extends Component {
     };
   }
   
-  _onContactSelected = (contactId) => {
+  handleContactSelected = (contactId) => {
     let selectedIndex;
     let contactObject;
     for(let index = 0; index < this.state.contactList.length; index++) {
@@ -44,7 +44,7 @@ class App extends Component {
     
   };
   
-  _onContactUpdated = (updatedContact) => {
+  handleContactUpdated = (updatedContact) => {
     
     const copiedContactList = [
       ...this.state.contactList
@@ -69,8 +69,8 @@ class App extends Component {
         <Contacts contactList={contactList}
                   selectedContactId={selectedContactId}
                   selectedContact={this.state.contactList[selectedIndex]}
-                  onUpdate={this._onContactUpdated}
-                  onContactSelected={this._onContactSelected} />
+                  onUpdate={this.handleContactUpdated}
+                  onContactSelected={this.handleContactSelected} />
       </div>
     );
   }
